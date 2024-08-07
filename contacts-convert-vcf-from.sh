@@ -72,7 +72,7 @@ case "${1}" in
 esac
 
 ( cat "${2}"; echo ) \
-  | sed -e s/$'\r'//g \
+  | sed -e s/'\r'//g \
   | while read LINE
     do
 
@@ -97,7 +97,6 @@ esac
           else
             vMAILS="${vMAILS};${vMAIL}"
           fi
-          MAIL=""
           ;;
 
         (NOTE*)
@@ -116,7 +115,6 @@ esac
           else
             vTELS="${vTELS};${vTEL}"
           fi
-          TEL=""
           ;;
 
         (END*)
@@ -180,5 +178,3 @@ esac
 
       esac
     done | sort -n
-
-echo '1' 2> /dev/null >> ~/scripts/stats/${0##*/}
